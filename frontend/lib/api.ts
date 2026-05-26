@@ -96,6 +96,10 @@ export const authApi = {
     const d = await apiFetch<AuthResponse>('/auth/demo', { method:'POST' });
     setTokens(d.tokens.accessToken, d.tokens.refreshToken); return d;
   },
+  async adminDemoLogin(): Promise<AuthResponse> {
+    const d = await apiFetch<AuthResponse>('/auth/demo-admin', { method:'POST' });
+    setTokens(d.tokens.accessToken, d.tokens.refreshToken); return d;
+  },
   async getMe(): Promise<AuthUser> { return apiFetch<AuthUser>('/auth/me', { auth:true }); },
   async updateMe(payload: { displayName?:string; phone?:string; preferredCity?:string }): Promise<AuthUser> {
     return apiFetch<AuthUser>('/auth/me', { method:'PATCH', body:payload, auth:true });
@@ -131,6 +135,9 @@ export const quotesApi = {
   },
   async confirmDeposit(id: string, stripePaymentIntentId?: string): Promise<QuoteRecord> {
     return apiFetch<QuoteRecord>(`/quotes/${id}/confirm-deposit`, { method:'POST', body:{stripePaymentIntentId}, auth:true });
+  },
+  async delete(id: string): Promise<void> {
+    await apiFetch(`/quotes/${id}`, { method:'DELETE', auth:true });
   },
 };
 

@@ -3,7 +3,13 @@
 import React, { createContext, useContext, useEffect, useState } from 'react';
 import type { UserProfile } from '@/types';
 import { authApi, isApiEnabled } from '@/lib/api';
-import { onAuthChange, loginUser, registerUser, logoutUser, DEMO_USER } from '@/firebase/auth';
+import { onAuthChange, loginUser, registerUser, logoutUser, DEMO_USER, ADMIN_USER } from '@/firebase/auth';
+
+function roleForUser(u: { uid: string; email?: string } | null): string | null {
+  if (!u) return null;
+  if (u.uid === ADMIN_USER.uid || u.email === ADMIN_USER.email) return 'admin';
+  return 'customer';
+}
 
 interface AuthContextType {
   user: UserProfile | null;
@@ -13,6 +19,7 @@ interface AuthContextType {
   register: (email: string, password: string, name: string) => Promise<void>;
   logout: () => Promise<void>;
   demoLogin: () => Promise<void>;
+  adminDemoLogin: () => Promise<void>;
 }
 
 const AuthContext = createContext<AuthContextType | null>(null);
@@ -46,7 +53,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     } else {
       const unsub = onAuthChange((u) => {
         setUser(u);
-        setUserRole(u ? 'customer' : null);
+        setUserRole(roleForUser(u));
         setLoading(false);
       });
       return unsub;
@@ -59,8 +66,8 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
       setUser(toProfile(data.user));
       setUserRole((data.user as { role?: string }).role ?? 'customer');
     } else {
-      await loginUser(email, password);
-      setUserRole('customer');
+      const u = await loginUser(email, password);
+      setUserRole(roleForUser(u));
     }
   }
 
@@ -92,8 +99,19 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     }
   }
 
+  async function adminDemoLogin() {
+    if (isApiEnabled) {
+      const data = await authApi.adminDemoLogin();
+      setUser(toProfile(data.user));
+      setUserRole((data.user as { role?: string }).role ?? 'admin');
+    } else {
+      await loginUser(ADMIN_USER.email, 'admin');
+      setUserRole('admin');
+    }
+  }
+
   return (
-    <AuthContext.Provider value={{ user, userRole, loading, login, register, logout, demoLogin }}>
+    <AuthContext.Provider value={{ user, userRole, loading, login, register, logout, demoLogin, adminDemoLogin }}>
       {children}
     </AuthContext.Provider>
   );

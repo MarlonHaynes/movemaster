@@ -9,7 +9,7 @@ import { useToast } from '@/hooks';
 
 export default function LoginPage() {
   const router = useRouter();
-  const { login, demoLogin } = useAuth();
+  const { login, demoLogin, adminDemoLogin } = useAuth();
   const toast = useToast();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -32,10 +32,28 @@ export default function LoginPage() {
 
   async function handleDemo() {
     setLoading(true);
-    await demoLogin();
-    toast.success('Signed in as Demo User');
-    router.push('/dashboard');
-    setLoading(false);
+    try {
+      await demoLogin();
+      toast.success('Signed in as Demo User');
+      router.push('/dashboard');
+    } catch (err: unknown) {
+      toast.error(err instanceof Error ? err.message : 'Demo sign-in failed.');
+    } finally {
+      setLoading(false);
+    }
+  }
+
+  async function handleAdminDemo() {
+    setLoading(true);
+    try {
+      await adminDemoLogin();
+      toast.success('Signed in as Admin');
+      router.push('/dashboard');
+    } catch (err: unknown) {
+      toast.error(err instanceof Error ? err.message : 'Admin sign-in failed.');
+    } finally {
+      setLoading(false);
+    }
   }
 
   return (
@@ -53,10 +71,15 @@ export default function LoginPage() {
           <h1 className="font-heading text-3xl text-white mb-1">SIGN IN</h1>
           <p className="text-text-muted text-sm mb-8">Welcome back. Enter your credentials below.</p>
 
-          {/* Demo Login */}
-          <button onClick={handleDemo} disabled={loading} className="w-full bg-primary/10 border border-primary/40 text-primary font-heading tracking-wider uppercase py-3 rounded-sm hover:bg-primary/20 transition-colors mb-6">
-            Sign In as Demo User
-          </button>
+          {/* Quick demo sign-in */}
+          <div className="space-y-3 mb-6">
+            <button onClick={handleDemo} disabled={loading} className="w-full bg-primary/10 border border-primary/40 text-primary font-heading tracking-wider uppercase py-3 rounded-sm hover:bg-primary/20 transition-colors">
+              Sign In as Demo User
+            </button>
+            <button onClick={handleAdminDemo} disabled={loading} className="w-full bg-secondary/10 border border-secondary/50 text-blue-300 font-heading tracking-wider uppercase py-3 rounded-sm hover:bg-secondary/20 transition-colors">
+              Sign In as Admin
+            </button>
+          </div>
 
           <div className="flex items-center gap-3 mb-6">
             <div className="flex-1 h-px bg-border" />

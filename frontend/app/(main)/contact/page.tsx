@@ -117,7 +117,7 @@ export default function ContactPage() {
                       <option value="">Select service type...</option>
                       <option>Residential Moving</option>
                       <option>Commercial Moving</option>
-                      <option>Long-Distance Moving</option>
+                      <option>Long Distance Moving</option>
                       <option>Packing & Unpacking</option>
                       <option>Storage Solutions</option>
                       <option>Specialty Item Moving</option>

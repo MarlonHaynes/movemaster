@@ -11,6 +11,13 @@ export const DEMO_USER: UserProfile = {
   createdAt: '2024-01-15T10:00:00Z',
 };
 
+export const ADMIN_USER: UserProfile = {
+  uid: 'admin-001',
+  displayName: 'Admin User',
+  email: 'admin@movemaster.pro',
+  createdAt: '2024-01-15T10:00:00Z',
+};
+
 type AuthCallback = (user: UserProfile | null) => void;
 const callbacks: AuthCallback[] = [];
 
@@ -50,6 +57,10 @@ export async function registerUser(email: string, _password: string, name: strin
 
 export async function loginUser(email: string, _password: string): Promise<UserProfile> {
   if (isDemoMode) {
+    if (email === ADMIN_USER.email) {
+      setStoredUser(ADMIN_USER);
+      return ADMIN_USER;
+    }
     if (email === DEMO_USER.email) {
       setStoredUser(DEMO_USER);
       return DEMO_USER;

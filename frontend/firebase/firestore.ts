@@ -43,6 +43,24 @@ export async function updateQuoteStatus(id: string, status: BookingStatus): Prom
   }
 }
 
+export async function deleteQuote(id: string): Promise<boolean> {
+  const quotes = getQuotes();
+  const next = quotes.filter((q) => q.id !== id);
+  if (next.length === quotes.length) return false;
+  saveQuotes(next);
+  return true;
+}
+
+/** Remove all quotes whose name matches (case-insensitive). Returns count removed. */
+export async function deleteQuotesByName(name: string): Promise<number> {
+  const norm = name.trim().toLowerCase();
+  const quotes = getQuotes();
+  const next = quotes.filter((q) => q.name.trim().toLowerCase() !== norm);
+  const removed = quotes.length - next.length;
+  if (removed > 0) saveQuotes(next);
+  return removed;
+}
+
 export async function markDepositPaid(id: string): Promise<void> {
   const quotes = getQuotes();
   const idx = quotes.findIndex((q) => q.id === id);

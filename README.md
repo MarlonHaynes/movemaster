@@ -2,12 +2,30 @@
 
 > **Full-stack SaaS platform for a Southern Ontario moving company — built to production grade with real business logic, persistent bookkeeping, and a complete admin operations suite.**
 
+[![Live Demo](https://img.shields.io/badge/Live_Demo-movemaster--seven.vercel.app-E85D04?style=flat&logo=vercel&logoColor=white)](https://movemaster-seven.vercel.app/)
+
 ![Next.js](https://img.shields.io/badge/Next.js_14-000000?style=flat&logo=nextdotjs&logoColor=white)
 ![TypeScript](https://img.shields.io/badge/TypeScript-3178C6?style=flat&logo=typescript&logoColor=white)
 ![Node.js](https://img.shields.io/badge/Node.js-339933?style=flat&logo=nodedotjs&logoColor=white)
 ![Express](https://img.shields.io/badge/Express-000000?style=flat&logo=express&logoColor=white)
 ![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-06B6D4?style=flat&logo=tailwindcss&logoColor=white)
 ![JWT](https://img.shields.io/badge/JWT_Auth-000000?style=flat&logo=jsonwebtokens&logoColor=white)
+
+---
+
+## Screenshots
+
+| Homepage | Quote wizard |
+|:---:|:---:|
+| ![Homepage hero](./frontend/Docs/Screenshots/Homepage%20hero.png) | ![Quote wizard](./frontend/Docs/Screenshots/Quote.png) |
+
+| City landing page | Customer dashboard |
+|:---:|:---:|
+| ![City landing page](./frontend/Docs/Screenshots/City%20Landing%20Page.png) | ![Customer dashboard](./frontend/Docs/Screenshots/Customer%20dashboard.png) |
+
+| Admin operations | Job & invoice detail |
+|:---:|:---:|
+| ![Admin operations dashboard](./frontend/Docs/Screenshots/Admin%20Operations%20Dashboard.png) | ![Job and invoice detail](./frontend/Docs/Screenshots/Job%20invoice%20detail.png) |
 
 ---
 
@@ -161,6 +179,8 @@ npm run dev
 
 Open `http://localhost:3000`
 
+**Live demo:** [https://movemaster-seven.vercel.app/](https://movemaster-seven.vercel.app/)
+
 ---
 
 ## Demo Credentials
@@ -170,7 +190,7 @@ Open `http://localhost:3000`
 | **Admin** | admin@movemaster.pro | admin1234 |
 | **Customer** | demo@movemaster.pro | demo1234 |
 
-Or click **"Sign In As Demo User"** on the login page.
+On the login page, use **Sign In as Demo User** or **Sign In as Admin** for one-click access.
 
 ---
 

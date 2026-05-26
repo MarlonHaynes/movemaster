@@ -4,7 +4,7 @@ export const crew: MovingCrew[] = [
   {
     id: 'mike-kowalski',
     name: 'Mike Kowalski',
-    photo: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=400&fit=crop&crop=face',
+    photo: 'https://i.pinimg.com/736x/f1/2f/37/f12f37a580349c171e0cb7ff6f3e8331.jpg',
     role: 'lead-mover',
     bio: 'Mike has been leading moving crews across Southern Ontario for over 12 years, starting as a helper right out of high school and working his way up to become one of our most requested team leads. He has an uncanny ability to assess a space and devise the most efficient packing and loading strategy, consistently finishing jobs ahead of schedule without ever sacrificing care. His specialty is managing large-scale residential moves, particularly 4-bedroom homes with decades of accumulated belongings. Mike is known for his calm demeanor under pressure — even on moving day chaos, he keeps the team focused and the client reassured. He holds full AMSA certification and has completed over 680 moves in his career. Clients in Mississauga and Brampton specifically request Mike by name.',
     yearsExperience: 12,
@@ -19,7 +19,7 @@ export const crew: MovingCrew[] = [
   {
     id: 'darnell-thompson',
     name: 'Darnell Thompson',
-    photo: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=400&h=400&fit=crop&crop=face',
+    photo: 'https://i.pinimg.com/736x/50/24/4e/50244e8ba80db64c80ef72cd34b602b3.jpg',
     role: 'lead-mover',
     bio: 'Darnell joined MoveMaster Pro eight years ago after a career in logistics, bringing a systematic, warehouse-grade approach to every move he leads. He is legendary for his packing technique — clients often marvel at how securely even the most fragile items arrive at their destination. Darnell has a particular passion for senior moving, taking extra time and patience to ensure elderly clients feel comfortable and respected throughout the entire process. He covers the Hamilton-Burlington corridor extensively and knows every elevator, loading dock, and tight staircase in the region. His crew consistently receives the highest satisfaction scores month over month. Outside of work, Darnell volunteers at community centres in Hamilton teaching organizational skills.',
     yearsExperience: 8,
@@ -51,7 +51,7 @@ export const crew: MovingCrew[] = [
     name: 'Tyler Bouchard',
     photo: 'https://i.pinimg.com/1200x/35/ae/d3/35aed3821a6eb1a787c75b0998d39180.jpg',
     role: 'driver',
-    bio: 'Tyler is our longest-serving driver, with over a decade behind the wheel of moving trucks across Ontario. He holds a Class A commercial license and has a spotless driving record, which is no small feat given the hundreds of thousands of kilometres he has logged. Tyler is an expert at navigating tight urban streets in downtown Toronto as well as the long highway hauls to Windsor or Niagara Falls. He is also a gifted mechanic who keeps a sharp eye on vehicle maintenance, often catching issues before they become problems. Clients love Tyler because he communicates arrival times precisely and always greets them with a professional handshake. He is the go-to driver for our long-distance moving service.',
+    bio: 'Tyler is our longest-serving driver, with over a decade behind the wheel of moving trucks across Ontario. He holds a Class A commercial license and has a spotless driving record, which is no small feat given the hundreds of thousands of kilometres he has logged. Tyler is an expert at navigating tight urban streets in downtown Toronto as well as the long highway hauls to Windsor or Niagara Falls. He is also a gifted mechanic who keeps a sharp eye on vehicle maintenance, often catching issues before they become problems. Clients love Tyler because he communicates arrival times precisely and always greets them with a professional handshake. He is the go-to driver for our Long Distance Moving service.',
     yearsExperience: 11,
     specialties: ['Long-Distance Driving', 'Urban Navigation', 'Vehicle Maintenance', 'Highway Hauls'],
     cities: ['Toronto', 'Hamilton', 'London', 'Windsor', 'Niagara Falls', 'Barrie'],

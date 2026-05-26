@@ -9,6 +9,7 @@ import {
 import { useAuth } from '@/context/AuthContext';
 import { bookkeepingApi, quotesApi, isApiEnabled, type DashboardStats, type QuoteRecord } from '@/lib/api';
 import { getUserQuotes, getAllQuotes } from '@/firebase/firestore';
+import { purgeStaleQuotes } from '@/lib/purgeQuotes';
 import type { QuoteRequest } from '@/types';
 import StatusBadge from '@/components/ui/StatusBadge';
 import { formatCurrency } from '@/lib/utils';
@@ -27,6 +28,7 @@ export default function DashboardPage() {
     setLoading(true);
     setError(null);
     try {
+      if (isAdmin) await purgeStaleQuotes();
       if (isAdmin && isApiEnabled) {
         // ── Admin: pull full bookkeeping dashboard ──
         const data = await bookkeepingApi.getDashboard();

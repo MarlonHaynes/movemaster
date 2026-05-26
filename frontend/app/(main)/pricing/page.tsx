@@ -49,7 +49,7 @@ export default function PricingPage() {
                   <div className="mb-6">
                     <span className="font-heading text-5xl text-primary">${tier.baseRate}</span>
                     <span className="text-text-muted text-lg">/hr</span>
-                    <p className="text-xs text-text-muted mt-1">Starting rate — final price based on home size</p>
+                    <p className="text-xs text-text-muted mt-1">Starting rate final price based on home size</p>
                   </div>
                   <ul className="space-y-2.5 mb-8 flex-1">
                     {tier.features.map((f) => (

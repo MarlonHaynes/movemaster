@@ -1,14 +1,16 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import { getAllQuotes, updateQuoteStatus } from '@/firebase/firestore';
+import { getAllQuotes, updateQuoteStatus, deleteQuote } from '@/firebase/firestore';
+import { quotesApi, isApiEnabled } from '@/lib/api';
+import { purgeStaleQuotes } from '@/lib/purgeQuotes';
 import type { QuoteRequest, BookingStatus } from '@/types';
 import StatusBadge from '@/components/ui/StatusBadge';
 import { formatCurrency } from '@/lib/utils';
 import { useToast } from '@/hooks';
 import Navbar from '@/components/Navbar';
 import Link from 'next/link';
-import { ArrowLeft, Search } from 'lucide-react';
+import { ArrowLeft, Search, Trash2 } from 'lucide-react';
 
 const STATUSES: BookingStatus[] = ['pending', 'confirmed', 'in-progress', 'completed', 'cancelled'];
 
@@ -21,14 +23,43 @@ export default function AdminQuotesPage() {
   const toast = useToast();
 
   useEffect(() => {
-    getAllQuotes().then((q) => { setQuotes(q); setLoading(false); });
+    async function load() {
+      try {
+        await purgeStaleQuotes();
+        setQuotes(isApiEnabled ? await quotesApi.getAll() : await getAllQuotes());
+      } finally {
+        setLoading(false);
+      }
+    }
+    load();
   }, []);
 
   async function handleStatusChange(id: string, status: BookingStatus) {
-    await updateQuoteStatus(id, status);
+    if (isApiEnabled) {
+      await quotesApi.updateStatus(id, status);
+    } else {
+      await updateQuoteStatus(id, status);
+    }
     setQuotes((prev) => prev.map((q) => q.id === id ? { ...q, status } : q));
     if (selected?.id === id) setSelected((prev) => prev ? { ...prev, status } : null);
     toast.success(`Quote ${id} updated to ${status}`);
+  }
+
+  async function handleDelete(id: string, name: string) {
+    if (!confirm(`Delete quote for ${name}? This cannot be undone.`)) return;
+    try {
+      if (isApiEnabled) {
+        await quotesApi.delete(id);
+      } else {
+        const ok = await deleteQuote(id);
+        if (!ok) throw new Error('Quote not found');
+      }
+      setQuotes((prev) => prev.filter((q) => q.id !== id));
+      if (selected?.id === id) setSelected(null);
+      toast.success(`Deleted quote for ${name}`);
+    } catch (err: unknown) {
+      toast.error(err instanceof Error ? err.message : 'Failed to delete quote');
+    }
   }
 
   const filtered = quotes.filter((q) => {
@@ -183,6 +214,14 @@ export default function AdminQuotesPage() {
                       Call Client
                     </a>
                   </div>
+
+                  <button
+                    type="button"
+                    onClick={() => handleDelete(selected.id, selected.name)}
+                    className="mt-3 w-full flex items-center justify-center gap-2 text-sm border border-red-900/60 text-red-400 hover:bg-red-950/40 py-2 rounded transition-colors"
+                  >
+                    <Trash2 size={14} /> Delete Quote
+                  </button>
                 </div>
               ) : (
                 <div className="bg-surface border border-border rounded-xl p-8 text-center text-text-muted sticky top-24">

@@ -6,7 +6,7 @@ import ToastContainer from '@/components/ui/Toast';
 
 export const metadata: Metadata = {
   title: { default: 'MoveMaster Pro | Southern Ontario Moving Company', template: '%s | MoveMaster Pro' },
-  description: "Southern Ontario's most trusted moving company. Residential, commercial, long-distance moving across Toronto, Mississauga, Hamilton, and 15+ cities. Get your free quote today.",
+  description: "Southern Ontario's most trusted moving company. Residential, commercial, Long Distance Moving across Toronto, Mississauga, Hamilton, and 15+ cities. Get your free quote today.",
   keywords: ['moving company', 'Southern Ontario', 'Toronto movers', 'Mississauga moving', 'Hamilton movers'],
 };
 

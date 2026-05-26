@@ -21,7 +21,7 @@ import {
   ok, created, badRequest, unauthorized, notFound, serverError,
 } from './utils/response';
 import {
-  readCollection, findOne, insertOne, updateOne,
+  readCollection, findOne, insertOne, updateOne, deleteOne, writeCollection,
 } from './database/db';
 import { generateId, generateQuoteId, generateInvNum } from './utils/id';
 import bookkeepingRoutes from './routes/bookkeeping.routes';
@@ -66,6 +66,13 @@ authRouter.post('/refresh', async (req: Request, res: Response) => {
 authRouter.post('/demo', async (_req: Request, res: Response) => {
   try {
     const { user, tokens } = await loginUser('demo@movemaster.pro', 'demo1234');
+    ok(res, { user: { uid:user.uid, displayName:user.displayName, email:user.email, role:user.role }, tokens });
+  } catch (e: unknown) { unauthorized(res, (e as Error).message); }
+});
+
+authRouter.post('/demo-admin', async (_req: Request, res: Response) => {
+  try {
+    const { user, tokens } = await loginUser('admin@movemaster.pro', 'admin1234');
     ok(res, { user: { uid:user.uid, displayName:user.displayName, email:user.email, role:user.role }, tokens });
   } catch (e: unknown) { unauthorized(res, (e as Error).message); }
 });
@@ -188,6 +195,15 @@ quotesRouter.post('/:id/confirm-deposit', authenticate, (req: Request, res: Resp
   const updated = updateOne<Job>('jobs', req.params.id, { depositPaid:true, depositPaidAt:now, status:'confirmed', updatedAt:now });
   if (!updated) { notFound(res,'Quote not found'); return; }
   ok(res, updated, 'Deposit confirmed. Booking locked in.');
+});
+
+quotesRouter.delete('/:id', authenticate, requireAdmin, (req: Request, res: Response) => {
+  const id = req.params.id;
+  if (!deleteOne<Job>('jobs', id)) { notFound(res, 'Quote not found'); return; }
+  deleteOne<Invoice>('invoices', `inv-${id}`);
+  const txns = readCollection<{ id: string; jobId: string }>('transactions').filter((t) => t.jobId !== id);
+  writeCollection('transactions', txns);
+  ok(res, { id }, 'Quote deleted.');
 });
 
 // ─── Contact Router ───────────────────────────────────────────────────────────

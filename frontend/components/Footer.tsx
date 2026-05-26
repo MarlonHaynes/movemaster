@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import { Truck, Phone, Mail, MapPin, Facebook, Instagram, Linkedin } from 'lucide-react';
 
-const services = ['Residential Moving', 'Commercial Moving', 'Long-Distance Moving', 'Packing & Unpacking', 'Storage Solutions', 'Specialty Moving', 'Last-Minute Moving', 'Senior Moving'];
+const services = ['Residential Moving', 'Commercial Moving', 'Long Distance Moving', 'Packing & Unpacking', 'Storage Solutions', 'Specialty Moving', 'Last-Minute Moving', 'Senior Moving'];
 const cities = ['Toronto', 'Mississauga', 'Brampton', 'Hamilton', 'Burlington', 'Oakville', 'Kitchener', 'London', 'Barrie'];
 
 export default function Footer() {

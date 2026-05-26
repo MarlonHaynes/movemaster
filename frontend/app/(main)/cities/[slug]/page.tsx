@@ -22,7 +22,7 @@ export async function generateMetadata({ params }: { params: { slug: string } })
 }
 
 const cityTips: Record<string, string[]> = {
-  toronto: ['Book the freight elevator at your condo building at least 72 hours in advance — most buildings require this.', 'Apply for a temporary parking permit from the City of Toronto at toronto.ca at least 3 business days before your move.', 'Schedule your move start time early (7-8am) to beat downtown traffic on the Gardiner and DVP.'],
+  toronto: ['Book the freight elevator at your condo building at least 72 hours in advance most buildings require this.', 'Apply for a temporary parking permit from the City of Toronto at toronto.ca at least 3 business days before your move.', 'Schedule your move start time early (7-8am) to beat downtown traffic on the Gardiner and DVP.'],
   mississauga: ['Confirm your building\'s loading dock hours with management — many Mississauga condos restrict moves to weekdays only.', 'If moving near Square One, note that traffic on Hurontario can be significant — early morning starts are best.', 'Keep your building superintendent\'s number handy for elevator access coordination on move day.'],
   default: ['Confirm building or complex moving rules and elevator booking requirements well in advance of your move date.', 'Apply for any required parking permits from your municipal office at least 3 business days before moving day.', 'Create a moving day essentials kit with snacks, phone chargers, and important documents you will need quick access to.'],
 };

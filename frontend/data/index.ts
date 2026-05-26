@@ -273,7 +273,7 @@ export const blogPosts: BlogPost[] = [
   {
     id: 'bp5',
     slug: 'moving-long-distance-ontario',
-    title: 'Long-Distance Moving in Ontario: What to Expect and How to Prepare',
+    title: 'Long Distance Moving in Ontario: What to Expect and How to Prepare',
     excerpt: 'Moving across Ontario is a fundamentally different experience from a local move. Here is the complete preparation guide.',
     content: `Long-distance moves in Ontario — anything over an hour of driving — require a different kind of planning than local moves. The logistics of an all-day haul, the complexity of coordinating timing at both ends, and the extended period where your belongings are in transit all need specific attention.
 

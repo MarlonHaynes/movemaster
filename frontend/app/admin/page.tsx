@@ -4,6 +4,8 @@ import { useEffect, useState } from 'react';
 import Link from 'next/link';
 import { FileText, Users, TrendingUp, Clock, ArrowRight, CheckCircle } from 'lucide-react';
 import { getAllQuotes } from '@/firebase/firestore';
+import { quotesApi, isApiEnabled } from '@/lib/api';
+import { purgeStaleQuotes } from '@/lib/purgeQuotes';
 import type { QuoteRequest } from '@/types';
 import StatusBadge from '@/components/ui/StatusBadge';
 import { formatCurrency } from '@/lib/utils';
@@ -14,7 +16,15 @@ export default function AdminPage() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    getAllQuotes().then((q) => { setQuotes(q); setLoading(false); });
+    async function load() {
+      try {
+        await purgeStaleQuotes();
+        setQuotes(isApiEnabled ? await quotesApi.getAll() : await getAllQuotes());
+      } finally {
+        setLoading(false);
+      }
+    }
+    load();
   }, []);
 
   const pending = quotes.filter((q) => q.status === 'pending').length;

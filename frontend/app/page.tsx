@@ -144,7 +144,7 @@ export default function HomePage() {
                 <div>
                   <p className="text-primary font-mono-custom text-sm tracking-widest uppercase mb-3">15 Cities. One Company.</p>
                   <h2 className="font-heading text-4xl md:text-5xl text-text-primary mb-4">WE MOVE ACROSS SOUTHERN ONTARIO</h2>
-                  <p className="text-text-muted leading-relaxed mb-6">From Windsor in the west to Barrie in the north, Niagara Falls in the east to London in the south — our GPS-tracked fleet covers it all.</p>
+                  <p className="text-text-muted leading-relaxed mb-6">From Windsor in the west to Barrie in the north, Niagara Falls in the east to London in the south our GPS-tracked fleet covers it all.</p>
                   <Link href="/cities" className="bg-primary hover:bg-primary-hover text-white font-heading tracking-wider uppercase px-6 py-3 rounded-sm transition-colors inline-block">
                     See All Coverage Areas
                   </Link>
@@ -214,7 +214,7 @@ export default function HomePage() {
                   <h3 className="font-heading text-2xl text-text-primary mb-1">{tier.name}</h3>
                   <p className="text-text-muted text-sm mb-4">{tier.description}</p>
                   <p className="font-heading text-4xl text-primary mb-1">${tier.baseRate}<span className="text-text-muted text-lg font-body">/hr</span></p>
-                  <p className="text-xs text-text-muted mb-6">Starting rate — final price based on home size & move details</p>
+                  <p className="text-xs text-text-muted mb-6">Starting rate final price based on home size & move details</p>
                   <ul className="space-y-2 mb-6 flex-1">
                     {tier.features.slice(0,5).map((f) => (
                       <li key={f} className="flex items-start gap-2 text-sm text-text-muted">
