@@ -13,6 +13,21 @@
 
 ---
 
+## Live Demo
+
+**[https://movemaster-seven.vercel.app/](https://movemaster-seven.vercel.app/)**
+
+No setup required. Use the credentials below to explore every role immediately.
+
+| Role | Email | Password |
+|---|---|---|
+| **Admin** | admin@movemaster.pro | admin1234 |
+| **Customer** | demo@movemaster.pro | demo1234 |
+
+On the login page, use **Sign In as Demo User** or **Sign In as Admin** for one-click access.
+
+---
+
 ## Screenshots
 
 | Homepage | Quote wizard |
@@ -179,19 +194,6 @@ npm run dev
 
 Open `http://localhost:3000`
 
-**Live demo:** [https://movemaster-seven.vercel.app/](https://movemaster-seven.vercel.app/)
-
----
-
-## Demo Credentials
-
-| Role | Email | Password |
-|---|---|---|
-| **Admin** | admin@movemaster.pro | admin1234 |
-| **Customer** | demo@movemaster.pro | demo1234 |
-
-On the login page, use **Sign In as Demo User** or **Sign In as Admin** for one-click access.
-
 ---
 
 ## API Reference
@@ -243,7 +245,7 @@ frontend/                          backend/
 │   ├── (main)/                    │   ├── config/
 │   │   ├── services/[slug]/       │   │   └── env.ts
 │   │   ├── cities/[slug]/         │   ├── database/
-│   │   ├── crew/[id]/             │   │   ├── db.ts        ← JSON file store
+│   │   ├── crew/[id]/             │   │   ├── db.ts
 │   │   ├── quote/                 │   │   └── seed.ts
 │   │   ├── booking/               │   ├── middleware/
 │   │   ├── pricing/               │   │   ├── auth.middleware.ts
@@ -265,21 +267,20 @@ frontend/                          backend/
 │       ├── crew/                  └── index.ts
 │       └── cities/
 ├── components/
-│   ├── ui/          (8 components)
-│   ├── quote/       (wizard steps)
+│   ├── ui/
+│   ├── quote/
 │   ├── services/
 │   ├── crew/
 │   ├── reviews/
 │   └── dashboard/
-├── context/         (Auth, Quote)
-├── data/            (static data layer)
-├── firebase/        (auth + firestore with demo fallback)
-├── hooks/           (custom React hooks)
+├── context/
+├── data/
+├── hooks/
 ├── lib/
-│   ├── api.ts       ← typed API client
+│   ├── api.ts
 │   └── utils.ts
 └── types/
-    └── index.ts     ← 15+ TypeScript interfaces
+    └── index.ts
 ```
 
 ---
@@ -321,7 +322,7 @@ The seed script generates a realistic 2-year business history:
 
 ### Frontend (`frontend/.env.local`)
 ```env
-NEXT_PUBLIC_API_URL=http://localhost:4000   # Backend API URL
+NEXT_PUBLIC_API_URL=http://localhost:4000
 
 # Optional — enables real Firebase auth instead of localStorage
 NEXT_PUBLIC_FIREBASE_API_KEY=
@@ -365,4 +366,19 @@ This project represents several hundred hours of design and engineering work cov
 
 ---
 
-*Built with Next.js 14, TypeScript, Express, and a lot of coffee.*
+## Contact
+
+Available for full-time and contract opportunities.
+📧 [marlon.haynes.dev@gmail.com](mailto:marlon.haynes.dev@gmail.com)
+
+---
+
+## License
+
+Personal portfolio project — not licensed for reuse or redistribution.
+
+© 2026 Marlon Haynes. All rights reserved.
+
+---
+
+Built by Marlon Haynes • Web Alchemist Labs
