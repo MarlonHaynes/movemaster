@@ -19,7 +19,8 @@ export default function AdminPage() {
     async function load() {
       try {
         await purgeStaleQuotes();
-        setQuotes(isApiEnabled ? await quotesApi.getAll() : await getAllQuotes());
+        const data = isApiEnabled ? await quotesApi.getAll() : await getAllQuotes();
+        setQuotes(data as QuoteRequest[]);
       } finally {
         setLoading(false);
       }
